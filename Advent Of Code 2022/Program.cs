@@ -5,7 +5,10 @@
 
 // Day 2
 
-DayTwo dayTwo = new();
-dayTwo.SolveAllAndPrint();
+// DayTwo dayTwo = new();
+// dayTwo.SolveAllAndPrint();
 
 // Day 3
+
+DayThree dayThree = new();
+dayThree.SolveAllAndPrint();
