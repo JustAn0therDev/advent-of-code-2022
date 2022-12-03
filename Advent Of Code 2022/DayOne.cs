@@ -1,7 +1,9 @@
-public class DayOne : IProblem {
+public class DayOne : IProblem
+{
 	public readonly string _input;
 
-	public DayOne() {
+	public DayOne()
+	{
 		_input = File.ReadAllText("PuzzleInputs/DayOne.txt");
 	}
 
@@ -11,15 +13,18 @@ public class DayOne : IProblem {
 		Console.WriteLine($"Part two: {SolvePartTwo()}");
 	}
 
-	public int SolvePartOne() {
+	public int SolvePartOne()
+	{
 		// Which elf has the most calories on them?
 
 		List<int> elfCalorieCount = new() { 0 };
 
 		string[] listOfCalories = _input.Split("\r");
 
-		foreach (string calorieAmount in listOfCalories) {
-			if (calorieAmount == "\n") {
+		foreach (string calorieAmount in listOfCalories)
+		{
+			if (calorieAmount == "\n")
+			{
 				elfCalorieCount.Add(0);
 				continue;
 			}
@@ -30,7 +35,8 @@ public class DayOne : IProblem {
 		return elfCalorieCount.Max();
 	}
 
-	public int SolvePartTwo() {
+	public int SolvePartTwo()
+	{
 		// How many calories are the top three elves with the most
 		// calories carrying?
 
@@ -38,8 +44,10 @@ public class DayOne : IProblem {
 
 		string[] listOfCalories = _input.Split("\r");
 
-		foreach (string calorieAmount in listOfCalories) {
-			if (calorieAmount == "\n") {
+		foreach (string calorieAmount in listOfCalories)
+		{
+			if (calorieAmount == "\n")
+			{
 				elfCalorieCount.Add(0);
 				continue;
 			}
