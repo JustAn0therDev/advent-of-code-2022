@@ -1,14 +1,23 @@
 ﻿// Day 1
 
-//DayOne dayOne = new();
-//dayOne.SolveAllAndPrint();
+// IProblem dayOne = new DayOne();
+// dayOne.SolveAllAndPrint();
+// Console.WriteLine();
 
 // Day 2
 
-// DayTwo dayTwo = new();
+// IProblem dayTwo = new DayTwo();
 // dayTwo.SolveAllAndPrint();
+// Console.WriteLine();
 
 // Day 3
 
-DayThree dayThree = new();
-dayThree.SolveAllAndPrint();
+// IProblem dayThree = new DayThree();
+// dayThree.SolveAllAndPrint();
+// Console.WriteLine();
+
+// Day 4
+
+IProblem dayFour = new DayFour();
+dayFour.SolveAllAndPrint();
+Console.WriteLine();
