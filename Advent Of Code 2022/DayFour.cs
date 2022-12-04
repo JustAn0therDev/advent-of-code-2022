@@ -10,7 +10,7 @@ public class DayFour : IProblem
 	public void SolveAllAndPrint()
 	{
 		Console.WriteLine($"Part one: {SolvePartOne()}");
-		// Console.WriteLine($"Part two: {SolvePartTwo()}");
+		Console.WriteLine($"Part two: {SolvePartTwo()}");
 	}
 
 	private int SolvePartOne()
@@ -38,26 +38,32 @@ public class DayFour : IProblem
 		return total;
 	}
 
-	// private int SolvePartTwo()
-	// {
-	// 	// How many calories are the top three elves with the most
-	// 	// calories carrying?
+	private int SolvePartTwo()
+	{
+		// In how many assignment pairs do the ranges overlap?
 
-	// 	List<int> elfCalorieCount = new() { 0 };
+		string[] pairs = _input.Split("\r").Select(s => s.Replace("\n", "")).ToArray();
 
-	// 	string[] listOfCalories = _input.Split("\r");
+		int total = 0;
 
-	// 	foreach (string calorieAmount in listOfCalories)
-	// 	{
-	// 		if (calorieAmount == "\n")
-	// 		{
-	// 			elfCalorieCount.Add(0);
-	// 			continue;
-	// 		}
+		foreach (string pair in pairs) {
+			string firstPair, secondPair;
+		
+			(firstPair, secondPair) = (pair.Split(",")[0], pair.Split(",")[1]);
 
-	// 		elfCalorieCount[^1] += Convert.ToInt32(calorieAmount);
-	// 	}
+			(int fpFirstValue, int fpSecondValue) = (int.Parse(firstPair.Split("-")[0]), int.Parse(firstPair.Split("-")[1]));
+			(int spFirstValue, int spSecondValue) = (int.Parse(secondPair.Split("-")[0]), int.Parse(secondPair.Split("-")[1]));
 
-	// 	return elfCalorieCount.OrderByDescending(od => od).Take(3).Sum();
-	// }
+			IEnumerable<int> firstList = Enumerable.Range(fpFirstValue, (fpSecondValue - fpFirstValue) + 1);
+			IEnumerable<int> secondList = Enumerable.Range(spFirstValue, (spSecondValue - spFirstValue) + 1);
+
+			var joined = firstList.Join(secondList, a => a, b => b, (a, b) => b);
+
+			if (joined.Count() > 0) {
+				total++;
+			}
+		}
+
+		return total;
+	}
 }
