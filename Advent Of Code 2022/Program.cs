@@ -24,6 +24,11 @@
 
 // Day 5
 
-IProblem dayFive = new DayFive();
-dayFive.SolveAllAndPrint();
+// IProblem dayFive = new DayFive();
+// dayFive.SolveAllAndPrint();
+// Console.WriteLine();
+
+// Day 6
+IProblem daySix = new DaySix();
+daySix.SolveAllAndPrint();
 Console.WriteLine();
