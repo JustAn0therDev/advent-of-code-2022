@@ -1,39 +1,48 @@
 ﻿// Day 1
 
-// IProblem dayOne = new DayOne();
-// dayOne.SolveAllAndPrint();
-// Console.WriteLine();
+Console.WriteLine("DAY ONE");
+IProblem dayOne = new DayOne();
+dayOne.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 2
 
-// IProblem dayTwo = new DayTwo();
-// dayTwo.SolveAllAndPrint();
-// Console.WriteLine();
+Console.WriteLine("DAY TWO");
+IProblem dayTwo = new DayTwo();
+dayTwo.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 3
 
-// IProblem dayThree = new DayThree();
-// dayThree.SolveAllAndPrint();
-// Console.WriteLine();
+Console.WriteLine("DAY THREE");
+IProblem dayThree = new DayThree();
+dayThree.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 4
 
-// IProblem dayFour = new DayFour();
-// dayFour.SolveAllAndPrint();
-// Console.WriteLine();
+Console.WriteLine("DAY FOUR");
+IProblem dayFour = new DayFour();
+dayFour.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 5
 
-// IProblem dayFive = new DayFive();
-// dayFive.SolveAllAndPrint();
-// Console.WriteLine();
+Console.WriteLine("DAY FIVE");
+IProblem dayFive = new DayFive();
+dayFive.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 6
-// IProblem daySix = new DaySix();
-// daySix.SolveAllAndPrint();
-// Console.WriteLine();
+
+Console.WriteLine("DAY SIX");
+IProblem daySix = new DaySix();
+daySix.SolveAllAndPrint();
+Console.WriteLine();
 
 // Day 7
+
+Console.WriteLine("DAY SEVEN");
 IProblem daySeven = new DaySeven();
 daySeven.SolveAllAndPrint();
 Console.WriteLine();

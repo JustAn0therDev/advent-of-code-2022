@@ -140,7 +140,6 @@ public class DayFive : IProblem
 			else
 			{
 				// this whole thing using lots of LINQ should be refactored later
-				Console.WriteLine(splitInput[i]);
 				string[] parsedInput = splitInput[i]
 				.Replace("move", "")
 				.Replace("from", "")
@@ -192,7 +191,6 @@ public class DayFive : IProblem
 			else
 			{
 				// this whole thing using lots of LINQ should be refactored later
-				Console.WriteLine(splitInput[i]);
 				string[] parsedInput = splitInput[i]
 				.Replace("move", "")
 				.Replace("from", "")

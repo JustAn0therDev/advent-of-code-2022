@@ -15,132 +15,14 @@ public class DaySeven : IProblem
         Console.WriteLine($"Part two: {SolvePartTwo()}");
     }
 
-    private double FindPartOne(TreeNode tree)
-    {
-        // if this directory is too large,
-        // look for directories inside it
-
-        double total = 0;
-        double nodeSize = tree.GetTotalSize();
-
-        if (nodeSize <= 100_000)
-        {
-            total += nodeSize;
-        }
-
-        foreach (var subDir in tree.SubDirectories)
-        {
-            total += FindPartOne(subDir);
-        }
-
-        return total;
-    }
-
-    private List<double> FindTotalSizes(TreeNode tree)
-    {
-        List<double> total = new();
-        double nodeSize = tree.GetTotalSize();
-
-        total.Add(nodeSize);
-
-        foreach (var subDir in tree.SubDirectories)
-        {
-            total.AddRange(FindTotalSizes(subDir));
-        }
-
-        return total;
-    }
-
-    private double FindPartTwo(TreeNode tree)
-    {
-        double nodeSize = tree.GetTotalSize();
-        double totalUnusedSize = TOTAL_SPACE_AVAILABLE - nodeSize;
-        List<double> sizes = new();
-
-        sizes.Add(nodeSize);
-
-        foreach (var subDir in tree.SubDirectories)
-        {
-            sizes.AddRange(FindTotalSizes(subDir));
-        }
-
-        return sizes.OrderBy(o => o).FirstOrDefault(w => totalUnusedSize + w >= SPACE_NEEDED_FOR_UPDATE);
-    }
-
-    public int SolvePartOne()
+    public TreeNode MakeTree()
     {
         // Find all of the directories with a total size of at most 100000. 
         // What is the sum of the total sizes of those directories?
 
         // The first command is always to make the tree.
-        // IReadOnlyList<string> lines = _input.Split("\r").Where(w => w != "$ cd /").Select(s => s.Replace("\n", "")).ToList();
-        IReadOnlyList<string> lines = _input.Split("$").Where(w => w != " cd /\r\n").Select(s => s.Trim()).Where(w => w != string.Empty).ToList();
-
-        // The root directory
-        TreeNode tree = new("/", parentDirectory: null);
-
-        foreach (string line in lines)
-        {
-            string command = line.Split(" ")[0];
-
-            switch (command)
-            {
-                case "cd":
-                    // read the string after it
-                    string directoryName = line.Split(" ")[1];
-
-                    if (directoryName == "..")
-                    {
-                        tree = tree.ParentDirectory!;
-                        continue;
-                    }
-
-                    if (tree.SubDirectories.Any(a => a.Name == directoryName))
-                    {
-                        tree = tree.SubDirectories.FirstOrDefault(f => f.Name == directoryName)!;
-                        continue;
-                    }
-                    break;
-                default:
-                    foreach (var item in line.Split("\r\n"))
-                    {
-                        // TODO: Refactor
-                        if (item == "ls")
-                            continue;
-
-                        // If the line is not a command, populate the current tree node
-                        (string info, string itemName) = (item.Split(" ")[0], item.Split(" ")[1]);
-
-                        if (double.TryParse(info, out double fileSize))
-                        {
-                            tree.Files.Add(new(itemName, fileSize));
-                        }
-                        else
-                        {
-                            tree.SubDirectories.Add(new(itemName, parentDirectory: tree));
-                        }
-                    }
-
-                    break;
-            }
-        }
-
-        // get to root directory
-        while (tree.ParentDirectory != null)
-        {
-            tree = tree.ParentDirectory;
-        }
-
-        return (int)FindPartOne(tree);
-    }
-
-    public int SolvePartTwo()
-    {
-        // Find all of the directories with a total size of at most 100000. 
-        // What is the sum of the total sizes of those directories?
-
-        // The first command is always to make the tree.
-        IReadOnlyList<string> lines = _input
+        IReadOnlyList<string> lines =
+            _input
             .Split("$")
             .Where(w => w != " cd /\r\n")
             .Select(s => s.Trim())
@@ -156,6 +38,7 @@ public class DaySeven : IProblem
             switch (command)
             {
                 case "cd":
+                    // read the string after it
                     string directoryName = line.Split(" ")[1];
 
                     if (directoryName == "..")
@@ -199,7 +82,69 @@ public class DaySeven : IProblem
             tree = tree.ParentDirectory;
         }
 
-        return (int)FindPartTwo(tree);
+        return tree;
+    }
+
+    public int SolvePartOne()
+    {
+        return (int)FindPartOne(MakeTree());
+    }
+
+    private double FindPartOne(TreeNode tree)
+    {
+        // if this directory is too large,
+        // look for directories inside it
+
+        double total = 0;
+        double nodeSize = tree.GetTotalSize();
+
+        if (nodeSize <= 100_000)
+        {
+            total += nodeSize;
+        }
+
+        foreach (var subDir in tree.SubDirectories)
+        {
+            total += FindPartOne(subDir);
+        }
+
+        return total;
+    }
+
+    public int SolvePartTwo()
+    {
+        return (int)FindPartTwo(MakeTree());
+    }
+
+    private double FindPartTwo(TreeNode tree)
+    {
+        double nodeSize = tree.GetTotalSize();
+        double totalUnusedSize = TOTAL_SPACE_AVAILABLE - nodeSize;
+        List<double> sizes = new();
+
+        sizes.Add(nodeSize);
+
+        foreach (var subDir in tree.SubDirectories)
+        {
+            sizes.AddRange(FindTotalSizes(subDir));
+        }
+
+        return sizes.OrderBy(o => o).FirstOrDefault(w => totalUnusedSize + w >= SPACE_NEEDED_FOR_UPDATE);
+    }
+
+    private List<double> FindTotalSizes(TreeNode tree)
+    {
+        List<double> total = new();
+        double nodeSize = tree.GetTotalSize();
+
+        total.Add(nodeSize);
+
+        foreach (var subDir in tree.SubDirectories)
+        {
+            total.AddRange(FindTotalSizes(subDir));
+        }
+
+        return total;
     }
 
     public class TreeNode
