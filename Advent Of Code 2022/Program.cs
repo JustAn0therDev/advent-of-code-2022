@@ -29,6 +29,11 @@
 // Console.WriteLine();
 
 // Day 6
-IProblem daySix = new DaySix();
-daySix.SolveAllAndPrint();
+// IProblem daySix = new DaySix();
+// daySix.SolveAllAndPrint();
+// Console.WriteLine();
+
+// Day 7
+IProblem daySeven = new DaySeven();
+daySeven.SolveAllAndPrint();
 Console.WriteLine();
