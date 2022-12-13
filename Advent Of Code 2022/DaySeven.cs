@@ -38,9 +38,6 @@ public class DaySeven : IProblem
 
     private List<double> FindTotalSizes(TreeNode tree)
     {
-        // if this directory is too large,
-        // look for directories inside it
-
         List<double> total = new();
         double nodeSize = tree.GetTotalSize();
 
@@ -110,6 +107,7 @@ public class DaySeven : IProblem
                         // TODO: Refactor
                         if (item == "ls")
                             continue;
+
                         // If the line is not a command, populate the current tree node
                         (string info, string itemName) = (item.Split(" ")[0], item.Split(" ")[1]);
 
@@ -142,8 +140,11 @@ public class DaySeven : IProblem
         // What is the sum of the total sizes of those directories?
 
         // The first command is always to make the tree.
-        // IReadOnlyList<string> lines = _input.Split("\r").Where(w => w != "$ cd /").Select(s => s.Replace("\n", "")).ToList();
-        IReadOnlyList<string> lines = _input.Split("$").Where(w => w != " cd /\r\n").Select(s => s.Trim()).Where(w => w != string.Empty).ToList();
+        IReadOnlyList<string> lines = _input
+            .Split("$")
+            .Where(w => w != " cd /\r\n")
+            .Select(s => s.Trim())
+            .Where(w => w != string.Empty).ToList();
 
         // The root directory
         TreeNode tree = new("/", parentDirectory: null);
@@ -155,7 +156,6 @@ public class DaySeven : IProblem
             switch (command)
             {
                 case "cd":
-                    // read the string after it
                     string directoryName = line.Split(" ")[1];
 
                     if (directoryName == "..")
@@ -173,9 +173,9 @@ public class DaySeven : IProblem
                 default:
                     foreach (var item in line.Split("\r\n"))
                     {
-                        // TODO: Refactor
                         if (item == "ls")
                             continue;
+
                         // If the line is not a command, populate the current tree node
                         (string info, string itemName) = (item.Split(" ")[0], item.Split(" ")[1]);
 
@@ -193,7 +193,7 @@ public class DaySeven : IProblem
             }
         }
 
-        // get to root directory
+        // Get to root directory
         while (tree.ParentDirectory != null)
         {
             tree = tree.ParentDirectory;
