@@ -46,3 +46,9 @@ Console.WriteLine("DAY SEVEN");
 IProblem daySeven = new DaySeven();
 daySeven.SolveAllAndPrint();
 Console.WriteLine();
+
+// Day 8
+Console.WriteLine("DAY EIGHT");
+IProblem dayEight = new DayEight();
+dayEight.SolveAllAndPrint();
+Console.WriteLine();
