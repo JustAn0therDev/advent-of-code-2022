@@ -52,3 +52,9 @@ Console.WriteLine("DAY EIGHT");
 IProblem dayEight = new DayEight();
 dayEight.SolveAllAndPrint();
 Console.WriteLine();
+
+// Day 9
+Console.WriteLine("DAY NINE");
+IProblem dayNine = new DayNine();
+dayNine.SolveAllAndPrint();
+Console.WriteLine();
