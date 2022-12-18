@@ -11,10 +11,10 @@ public class DayNine : IProblem
 	public void SolveAllAndPrint()
 	{
 		Console.WriteLine($"Part one: {SolvePartOne()}");
-		//Console.WriteLine($"Part two: {SolvePartTwo()}");
+		Console.WriteLine($"Part two: {SolvePartTwo()}");
 	}
 
-	public bool IsNotAdjacent(Point head, Point tail) 
+	public bool IsNotAdjacent(Point head, Point tail)
 	{
 		return Math.Abs(head.X - tail.X) > 1 || Math.Abs(head.Y - tail.Y) > 1;
 	}
@@ -50,14 +50,15 @@ public class DayNine : IProblem
 
 				if (IsNotAdjacent(head, tail))
 				{
-					if (!visited.Contains((headsLastPositionX, headsLastPositionY))) {
+					if (!visited.Contains((headsLastPositionX, headsLastPositionY)))
+					{
 						visited.Add((headsLastPositionX, headsLastPositionY));
 					}
 
 					tail.Move(headsLastPositionX, headsLastPositionY);
-					// Console.WriteLine($"They are now in {head.X}, {head.Y} and {tail.X}, {tail.Y}.");
-				} else {
-					// Console.WriteLine($"Adjacent. In {head.X}, {head.Y} and {tail.X}, {tail.Y}.");
+				}
+				else
+				{
 				}
 			}
 		}
@@ -65,11 +66,9 @@ public class DayNine : IProblem
 		return visited.Count;
 	}
 
-	/*
-		public int SolvePartTwo()
-		{
-		}
-	*/
+	public int SolvePartTwo()
+	{
+	}
 
 	public struct Point
 	{
