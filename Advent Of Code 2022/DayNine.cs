@@ -57,9 +57,6 @@ public class DayNine : IProblem
 
 					tail.Move(headsLastPositionX, headsLastPositionY);
 				}
-				else
-				{
-				}
 			}
 		}
 
