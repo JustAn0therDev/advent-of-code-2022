@@ -10,7 +10,6 @@ public class DayNine : IProblem
     public void SolveAllAndPrint()
     {
         Console.WriteLine($"Part one: {SolvePartOne()}");
-        //Console.WriteLine($"Part two: {GetUniqueTailPositions(2, 10)}");
         Console.WriteLine($"Part two: {SolvePartTwo()}");
     }
 
@@ -110,8 +109,6 @@ public class DayNine : IProblem
                 visited.Add((rope[^1].x, rope[^1].y));
             }
         }
-
-        // The result should be less than 2538...
 
         return visited.Count;
     }
